@@ -1,31 +1,4 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
-
-import { Platform } from 'react-native';
-
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
-
-export const Colors = {
-  light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
-  },
-};
+import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 
 export const Fonts = Platform.select({
   ios: {
@@ -39,15 +12,236 @@ export const Fonts = Platform.select({
     mono: 'ui-monospace',
   },
   default: {
-    sans: 'normal',
+    sans: 'sans-serif',
     serif: 'serif',
-    rounded: 'normal',
+    rounded: 'sans-serif',
     mono: 'monospace',
   },
   web: {
-    sans: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+    sans: "Pretendard, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
     serif: "Georgia, 'Times New Roman', serif",
-    rounded: "'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif",
+    rounded: "Pretendard, 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif",
     mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
   },
 });
+
+const frontendColors = {
+  light: {
+    background: '#FFFFFF',
+    foreground: '#0A0A0A',
+    card: '#FFFFFF',
+    cardForeground: '#0A0A0A',
+    popover: '#FFFFFF',
+    popoverForeground: '#0A0A0A',
+    primary: '#171717',
+    primaryForeground: '#FAFAFA',
+    secondary: '#F5F5F5',
+    secondaryForeground: '#171717',
+    muted: '#F5F5F5',
+    mutedForeground: '#737373',
+    accent: '#F5F5F5',
+    accentForeground: '#171717',
+    destructive: '#E7000B',
+    border: '#E5E5E5',
+    input: '#E5E5E5',
+    ring: '#A1A1A1',
+    chart1: '#F54900',
+    chart2: '#009689',
+    chart3: '#104E64',
+    chart4: '#FFB900',
+    chart5: '#FE9A00',
+    sidebar: '#FAFAFA',
+    sidebarForeground: '#0A0A0A',
+    sidebarPrimary: '#171717',
+    sidebarPrimaryForeground: '#FAFAFA',
+    sidebarAccent: '#F5F5F5',
+    sidebarAccentForeground: '#171717',
+    sidebarBorder: '#E5E5E5',
+    sidebarRing: '#A1A1A1',
+  },
+  dark: {
+    background: '#0A0A0A',
+    foreground: '#FAFAFA',
+    card: '#171717',
+    cardForeground: '#FAFAFA',
+    popover: '#171717',
+    popoverForeground: '#FAFAFA',
+    primary: '#E5E5E5',
+    primaryForeground: '#171717',
+    secondary: '#262626',
+    secondaryForeground: '#FAFAFA',
+    muted: '#262626',
+    mutedForeground: '#A1A1A1',
+    accent: '#262626',
+    accentForeground: '#FAFAFA',
+    destructive: '#FF6467',
+    border: 'rgba(255, 255, 255, 0.10)',
+    input: 'rgba(255, 255, 255, 0.15)',
+    ring: '#737373',
+    chart1: '#1447E6',
+    chart2: '#00BC7D',
+    chart3: '#FE9A00',
+    chart4: '#AD46FF',
+    chart5: '#FF2056',
+    sidebar: '#171717',
+    sidebarForeground: '#FAFAFA',
+    sidebarPrimary: '#1447E6',
+    sidebarPrimaryForeground: '#FAFAFA',
+    sidebarAccent: '#262626',
+    sidebarAccentForeground: '#FAFAFA',
+    sidebarBorder: 'rgba(255, 255, 255, 0.10)',
+    sidebarRing: '#737373',
+  },
+} as const;
+
+export const Colors = {
+  light: {
+    ...frontendColors.light,
+    text: frontendColors.light.foreground,
+    textMuted: frontendColors.light.mutedForeground,
+    textSubtle: frontendColors.light.ring,
+    surface: frontendColors.light.card,
+    surfaceMuted: frontendColors.light.muted,
+    surfaceElevated: frontendColors.light.popover,
+    borderStrong: frontendColors.light.ring,
+    tint: frontendColors.light.primary,
+    icon: frontendColors.light.mutedForeground,
+    tabIconDefault: frontendColors.light.mutedForeground,
+    tabIconSelected: frontendColors.light.primary,
+    primaryPressed: frontendColors.light.foreground,
+    danger: frontendColors.light.destructive,
+    dangerMuted: 'rgba(231, 0, 11, 0.10)',
+    success: frontendColors.light.chart2,
+    successMuted: 'rgba(0, 150, 137, 0.12)',
+    warning: frontendColors.light.chart5,
+    warningMuted: 'rgba(254, 154, 0, 0.14)',
+    info: frontendColors.light.chart3,
+    infoMuted: 'rgba(16, 78, 100, 0.12)',
+    overlay: 'rgba(10, 10, 10, 0.48)',
+    shadow: 'rgba(10, 10, 10, 0.12)',
+  },
+  dark: {
+    ...frontendColors.dark,
+    text: frontendColors.dark.foreground,
+    textMuted: frontendColors.dark.mutedForeground,
+    textSubtle: frontendColors.dark.ring,
+    surface: frontendColors.dark.card,
+    surfaceMuted: frontendColors.dark.muted,
+    surfaceElevated: frontendColors.dark.popover,
+    borderStrong: frontendColors.dark.input,
+    tint: frontendColors.dark.primary,
+    icon: frontendColors.dark.mutedForeground,
+    tabIconDefault: frontendColors.dark.mutedForeground,
+    tabIconSelected: frontendColors.dark.primary,
+    primaryPressed: frontendColors.dark.foreground,
+    danger: frontendColors.dark.destructive,
+    dangerMuted: 'rgba(255, 100, 103, 0.18)',
+    success: frontendColors.dark.chart2,
+    successMuted: 'rgba(0, 188, 125, 0.16)',
+    warning: frontendColors.dark.chart3,
+    warningMuted: 'rgba(254, 154, 0, 0.18)',
+    info: frontendColors.dark.chart1,
+    infoMuted: 'rgba(20, 71, 230, 0.18)',
+    overlay: 'rgba(0, 0, 0, 0.62)',
+    shadow: 'rgba(0, 0, 0, 0.42)',
+  },
+} as const;
+
+export type ThemeName = keyof typeof Colors;
+export type ThemeColorName = keyof typeof Colors.light & keyof typeof Colors.dark;
+
+export const Spacing = {
+  none: 0,
+  xxs: 2,
+  xs: 4,
+  sm: 8,
+  md: 12,
+  lg: 16,
+  xl: 24,
+  '2xl': 32,
+  '3xl': 40,
+  '4xl': 56,
+} as const;
+
+export const Radius = {
+  none: 0,
+  xs: 4,
+  sm: 6,
+  md: 8,
+  lg: 10,
+  xl: 14,
+  '2xl': 18,
+  '3xl': 22,
+  '4xl': 26,
+  pill: 999,
+} as const;
+
+export const Typography = {
+  display: {
+    fontFamily: Fonts.sans,
+    fontSize: 40,
+    lineHeight: 46,
+    fontWeight: '700',
+    letterSpacing: 0,
+  },
+  title: {
+    fontFamily: Fonts.sans,
+    fontSize: 28,
+    lineHeight: 34,
+    fontWeight: '700',
+    letterSpacing: 0,
+  },
+  heading: {
+    fontFamily: Fonts.sans,
+    fontSize: 22,
+    lineHeight: 28,
+    fontWeight: '700',
+    letterSpacing: 0,
+  },
+  body: {
+    fontFamily: Fonts.sans,
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: '400',
+    letterSpacing: 0,
+  },
+  bodyStrong: {
+    fontFamily: Fonts.sans,
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: '600',
+    letterSpacing: 0,
+  },
+  label: {
+    fontFamily: Fonts.sans,
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
+    letterSpacing: 0,
+  },
+  caption: {
+    fontFamily: Fonts.sans,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '500',
+    letterSpacing: 0,
+  },
+} satisfies Record<string, TextStyle>;
+
+export const Shadows = {
+  none: {},
+  sm: {
+    shadowColor: '#0A0A0A',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  md: {
+    shadowColor: '#0A0A0A',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.12,
+    shadowRadius: 18,
+    elevation: 4,
+  },
+} satisfies Record<string, ViewStyle>;

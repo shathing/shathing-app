@@ -6,7 +6,6 @@ import { ComponentProps } from 'react';
 import { OpaqueColorValue, type StyleProp, type TextStyle } from 'react-native';
 
 type IconMapping = Record<SymbolViewProps['name'], ComponentProps<typeof MaterialIcons>['name']>;
-type IconSymbolName = keyof typeof MAPPING;
 
 /**
  * Add your SF Symbols to Material Icons mappings here.
@@ -14,11 +13,31 @@ type IconSymbolName = keyof typeof MAPPING;
  * - see SF Symbols in the [SF Symbols](https://developer.apple.com/sf-symbols/) app.
  */
 const MAPPING = {
-  'house.fill': 'home',
-  'paperplane.fill': 'send',
+  'arrow.clockwise': 'refresh',
+  'arrow.right': 'arrow-forward',
+  'bolt.fill': 'bolt',
+  'chart.bar.fill': 'bar-chart',
+  'checkmark.circle.fill': 'check-circle',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  'gearshape.fill': 'settings',
+  'globe': 'language',
+  'heart.fill': 'favorite',
+  'house.fill': 'home',
+  'line.3.horizontal.decrease.circle': 'filter-list',
+  'magnifyingglass': 'search',
+  'message.fill': 'chat-bubble',
+  'paintpalette.fill': 'palette',
+  'paperplane.fill': 'send',
+  'person.2.fill': 'group',
+  'person.crop.circle': 'account-circle',
+  'photo.fill': 'photo',
+  'plus': 'add',
+  'rectangle.stack.fill': 'view-agenda',
+  'square.and.pencil': 'edit',
 } as IconMapping;
+
+export type IconSymbolName = keyof typeof MAPPING;
 
 /**
  * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.

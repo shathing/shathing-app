@@ -1,31 +1,42 @@
 import { StyleSheet, Text, type TextProps } from 'react-native';
 
+import { Typography, type ThemeColorName } from '@/constants/theme';
 import { useThemeColor } from '@/hooks/use-theme-color';
 
 export type ThemedTextProps = TextProps & {
+  color?: ThemeColorName;
   lightColor?: string;
   darkColor?: string;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
+  type?:
+    | 'default'
+    | 'defaultSemiBold'
+    | 'display'
+    | 'title'
+    | 'subtitle'
+    | 'heading'
+    | 'body'
+    | 'bodyStrong'
+    | 'label'
+    | 'caption'
+    | 'link';
 };
 
 export function ThemedText({
   style,
+  color,
   lightColor,
   darkColor,
   type = 'default',
   ...rest
 }: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const colorName = color ?? (type === 'link' ? 'primary' : 'text');
+  const resolvedColor = useThemeColor({ light: lightColor, dark: darkColor }, colorName);
 
   return (
     <Text
       style={[
-        { color },
-        type === 'default' ? styles.default : undefined,
-        type === 'title' ? styles.title : undefined,
-        type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
-        type === 'subtitle' ? styles.subtitle : undefined,
-        type === 'link' ? styles.link : undefined,
+        { color: resolvedColor },
+        styles[type],
         style,
       ]}
       {...rest}
@@ -34,27 +45,15 @@ export function ThemedText({
 }
 
 const styles = StyleSheet.create({
-  default: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-  defaultSemiBold: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: '600',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    lineHeight: 32,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: '#0a7ea4',
-  },
+  default: Typography.body,
+  defaultSemiBold: Typography.bodyStrong,
+  display: Typography.display,
+  title: Typography.title,
+  subtitle: Typography.heading,
+  heading: Typography.heading,
+  body: Typography.body,
+  bodyStrong: Typography.bodyStrong,
+  label: Typography.label,
+  caption: Typography.caption,
+  link: Typography.bodyStrong,
 });
